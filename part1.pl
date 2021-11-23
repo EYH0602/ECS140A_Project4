@@ -15,5 +15,13 @@ reverseHelper([X | Xs], Ys, Zs) :- reverseHelper(Xs, Ys, [X | Zs]).
 
 myReverse(Xs, Ys) :- reverseHelper(Xs, Ys, []).
 
+% flatten(L1, L2)
+% L2 is the flattened version of L1
+myFlatten(X, X).
+myFlatten([X | Xs], [X | Ys]) :- X \= [], myFlatten(Xs, Ys).
+myFlatten([X | Xs], Ys) :-
+    myFlatten(X, FlattenX), 
+    myFlatten(Xs, FlattenXs), 
+    concat(FlattenX, FlattenXs, Ys).
 
 
