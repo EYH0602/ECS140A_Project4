@@ -30,6 +30,6 @@ myFlatten([X | Xs], Ys) :-
 compress(X, X).
 compress(Xs, Ys) :- compressHelper(Xs, Ys, []).
 
-compressHelper([], Ys, Zs) :- reverse(Ys, Zs).
+compressHelper([], Ys, Zs) :- myReverse(Ys, Zs).
 compressHelper([X | Xs], Ys, [X | Zs]) :- compressHelper(Xs, Ys, [X | Zs]).
 compressHelper([X | Xs], Ys, Zs) :- compressHelper(Xs, Ys, [X | Zs]).
