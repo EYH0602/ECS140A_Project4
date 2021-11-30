@@ -18,12 +18,12 @@ reverseHelper([X | Xs], Ys, Zs) :- reverseHelper(Xs, Ys, [X | Zs]).
 
 % flatten(L1, L2)
 % L2 is the flattened version of L1
-my_flatten(X, X).
-my_flatten([X | Xs], [X | Ys]) :- X \= [], my_flatten(Xs, Ys).
+my_flatten([], []).
 my_flatten([X | Xs], Ys) :-
     my_flatten(X, FlattenX), 
     my_flatten(Xs, FlattenXs), 
     my_concat(FlattenX, FlattenXs, Ys).
+my_flatten([X | Xs], [X | Ys]) :- X \= [], my_flatten(Xs, Ys).
 
 % compress(L1, L2)
 % L1, L2 is its compressed version by eliminating the duplicates.
