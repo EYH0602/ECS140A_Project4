@@ -29,6 +29,9 @@ my_flatten([X | Xs], [X | Ys]) :- X \= [], my_flatten(Xs, Ys).
 % L1, L2 is its compressed version by eliminating the duplicates.
 compress(Xs, Ys) :- compressHelper(Xs, Ys, []).
 
-compressHelper([], Ys, Zs) :- my_reverse(Ys, Zs).
-compressHelper([X | Xs], Ys, [X | Zs]) :- compressHelper(Xs, Ys, [X | Zs]).
-compressHelper([X | Xs], Ys, Zs) :- compressHelper(Xs, Ys, [X | Zs]).
+compressHelper([], Ys, Zs) :- reverse(Ys, Zs).
+compressHelper([X | Xs], Ys, Zs) :-
+    member(X, Zs),
+    compressHelper(Xs, Ys, Zs).
+compressHelper([X | Xs], Ys, Zs) :-
+    compressHelper(Xs, Ys, [X | Zs]).
