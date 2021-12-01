@@ -2,7 +2,7 @@
 % L is the concatenation of L1 and L2
 my_concat([], [], []).
 my_concat([], [Y | Ys], [Y | Zs]) :- my_concat([], Ys, Zs).
-my_concat([X | Xs], Ys, [X | Zs]) :- my_concat(Xs, Ys, Zs).
+my_concat([X | Xs], Ys, [X | Zs]) :- my_concat(Xs, Ys, Zs), !.
 
 % element_at(X, N, L)
 % element X is the Nth element in list L
@@ -23,11 +23,11 @@ my_flatten([X | Xs], Ys) :-
     my_flatten(X, FlattenX), 
     my_flatten(Xs, FlattenXs), 
     my_concat(FlattenX, FlattenXs, Ys).
-my_flatten([X | Xs], [X | Ys]) :- X \= [], my_flatten(Xs, Ys).
+my_flatten([X | Xs], [X | Ys]) :- X \= [], my_flatten(Xs, Ys), !.
 
 % compress(L1, L2)
 % L1, L2 is its compressed version by eliminating the duplicates.
-compress(Xs, Ys) :- compressHelper(Xs, Ys, []).
+compress(Xs, Ys) :- compressHelper(Xs, Ys, []), !.
 
 compressHelper([], Ys, Zs) :- reverse(Ys, Zs).
 compressHelper([X | Xs], Ys, Zs) :-
